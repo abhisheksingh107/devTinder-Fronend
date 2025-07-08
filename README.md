@@ -16,4 +16,8 @@
 - whenever your arr making an API call so pass axios => {withcredentials: true}
 - Install redux-toolkit and react-redux 
 - configure Store => Provider => createSlice => add reducer to store
- 
+- Add reduc tool in chrome devtool
+- Login and see if your data is  comming properly in the store
+- Navbar should update as soon as user loggedin
+- you should not be access any other routes without login
+- 
