@@ -20,4 +20,7 @@
 - Login and see if your data is  comming properly in the store
 - Navbar should update as soon as user loggedin
 - you should not be access any other routes without login
-- 
+- if the token is not present, redirect user to /login page 
+- logout feature 
+- Get the feed and add the feed in the store
+- build the User card on feed

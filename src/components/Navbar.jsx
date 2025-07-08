@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constant";
 import { removeUser } from "../utils/userSlice";
+import { removeFeed } from "../utils/feedSlice";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user);
@@ -21,13 +22,14 @@ const Navbar = () => {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
+      dispatch(removeFeed());
     } catch (error) {
       console.error("Logout failed", error);
     } finally {
       navigate("/login");
     }
   };
-  console.log(user);
+  // console.log(user);
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
