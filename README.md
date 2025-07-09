@@ -26,4 +26,6 @@
 - build the User card on feed
 - Edit Profile features
 - Show toast on save of the profile
-- See all connections
+- New Page - See all connections
+- New Page - see all requests
+- 

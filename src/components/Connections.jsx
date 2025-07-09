@@ -27,27 +27,32 @@ const Connection = () => {
   if (connections.length === 0) return <p>"No Connection Found"</p>;
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4 flex justify-center">Connections</h2>
+      <h2 className="text-xl font-bold mb-4 flex justify-center">
+        Connections
+      </h2>
       <ul className="space-y-2">
-        {connections.map((conn) => (
-          <li key={conn._id} className="bg-gray-500 p-3 rounded">
-            <div className="flex items-center gap-4">
-              <img
-                src={conn.photoUrl}
-                alt={`${conn.firstName} ${conn.lastName}`}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-              <div>
-                <p>
-                  <strong>Name:</strong> {conn.firstName} {conn.lastName}
-                </p>
-                <p>
-                  <strong>About:</strong> {conn.about}
-                </p>
+        {connections.map((conn) => {
+          const { firstName, lastName, about, photoUrl } = conn;
+          return (
+            <li key={conn._id} className="bg-gray-500 p-3 rounded">
+              <div className="flex items-center gap-4">
+                <img
+                  src={photoUrl}
+                  alt={`${firstName} ${lastName}`}
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+                <div>
+                  <p>
+                    <strong>Name:</strong> {firstName} {lastName}
+                  </p>
+                  <p>
+                    <strong>About:</strong> {about}
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
