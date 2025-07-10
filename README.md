@@ -28,4 +28,4 @@
 - Show toast on save of the profile
 - New Page - See all connections
 - New Page - see all requests
-- 
+- feature - Accept/reject connection request
