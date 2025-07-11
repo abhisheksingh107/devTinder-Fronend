@@ -30,4 +30,5 @@
 - New Page - see all requests
 - feature - Accept/reject connection request
 - feature - send interested/ingnored connection request
-- 
+- feature SignUp 
+

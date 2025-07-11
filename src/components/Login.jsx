@@ -68,7 +68,7 @@ const Login = () => {
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
-              type="text"
+              type="password"
               className="input"
               value={password}
             />
