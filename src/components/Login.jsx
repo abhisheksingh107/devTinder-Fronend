@@ -2,12 +2,13 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("Abhishek@singh.com");
-  const [password, setPassword] = useState("Abhishek@123");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const [showtoast, setShowToast] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -34,28 +35,35 @@ const Login = () => {
         err?.message ||
         "Something went Wrong";
       setError(`Login failed: ${message}`);
+      setShowToast(true);
     }
   };
 
   return (
-    <div className="flex justify-center m-2">
-      <div className="card card-border bg-base-300 justify-center w-80">
+    <div className="flex justify-center m-5">
+      <div className="card card-border bg-base-300 justify-center w-90">
         <div className="card-body">
-          <h2 className="card-title justify-center">Login</h2>
-          <fieldset className="fieldset">
-            <legend className="fieldset-legend font-semibold">Email ID:</legend>
+          <h1 className="card-title text-3xl">Welcome back</h1>
+          <p className="justify-center font-semibold text-gray-600">
+            Welcome back! Please enter your details.
+          </p>
+          <fieldset className="fieldset mt-5">
+            <legend className="fieldset-legend text-lg text-gray-400 font-semibold">
+              <strong>Email *</strong>
+            </legend>
             <input
               onChange={(e) => {
                 setEmailId(e.target.value);
               }}
               type="text"
               className="input"
-              placeholder="example@gmail.com"
               value={emailId}
             />
           </fieldset>
           <fieldset className="fieldset">
-            <legend className="fieldset-legend font-semibold">Password</legend>
+            <legend className="fieldset-legend text-lg text-gray-400 font-semibold">
+              <strong>Password *</strong>
+            </legend>
             <input
               onChange={(e) => {
                 setPassword(e.target.value);
@@ -65,11 +73,32 @@ const Login = () => {
               value={password}
             />
           </fieldset>
-          <p className="text-red-500">{error}</p>
+
+          <div className="text-purple-400 font-medium flex justify-end my-2 hover:underline cursor-pointer">
+            <a>Forget Password ?</a>
+          </div>
+          {showtoast && (
+            <div className="toast toast-top toast-center">
+              <div className="alert alert-error">
+                <span>{error}</span>
+              </div>
+            </div>
+          )}
           <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={handleLogin}>
-              Login
+            <button className="btn btn-primary w-full" onClick={handleLogin}>
+              Sign In
             </button>
+          </div>
+          <div className="mt-5 text-center">
+            <p>
+              Don't have an account?{" "}
+              <Link
+                to="/signup"
+                className="text-purple-400 hover:underline cursor-pointer"
+              >
+                Create an Account
+              </Link>
+            </p>
           </div>
         </div>
       </div>

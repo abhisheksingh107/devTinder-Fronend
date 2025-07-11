@@ -1,5 +1,30 @@
+import axios from "axios";
+import { BASE_URL } from "../utils/constant";
+import { useDispatch } from "react-redux";
+import { removeFeed } from "../utils/feedSlice";
+
 const UserCard = ({ user }) => {
-  const { firstName, lastName, photoUrl, age, about, skills } = user;
+  const dispatch = useDispatch();
+  const handleSendRequest = async (status, _id) => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/request/send/" + status + "/" + _id,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(res)
+      dispatch(removeFeed(_id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if(!user){return null};
+
+  const { _id, firstName, lastName, photoUrl, age, about, skills } = user;
+
   return (
     <div>
       <div className="card bg-base-300 w-96 h-[80vh] shadow-sm overflow-hidden">
@@ -8,7 +33,7 @@ const UserCard = ({ user }) => {
             className="w-full h-[50vh] mt-1 object-cover"
             src={
               photoUrl ||
-              "https://img.daisyui.com/images/profile/demo/batperson@192.webp"
+              "https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/user-profile-icon.png"
             }
             alt={`${firstName} ${lastName}'s Profile picture`}
           />
@@ -25,8 +50,8 @@ const UserCard = ({ user }) => {
             </p>
           )}
           <div className="card-actions justify-center my-4">
-            <button className="btn btn-primary">Ignore</button>
-            <button className="btn btn-secondary">interested</button>
+            <button className="btn btn-primary" onClick={() => {handleSendRequest("ignored", _id)}}>Ignore</button>
+            <button className="btn btn-secondary" onClick={() => {handleSendRequest("interested", _id)}}>interested</button>
           </div>
         </div>
       </div>

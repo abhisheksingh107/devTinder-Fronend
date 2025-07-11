@@ -12,10 +12,12 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handlelogo = () => {
-    if (user) {
-      navigate("/");
-    }
-  };
+  if (user) {
+    navigate("/feed");
+  } else {
+    navigate("/login");
+  }
+};
 
   const handleLogout = async () => {
     try {
