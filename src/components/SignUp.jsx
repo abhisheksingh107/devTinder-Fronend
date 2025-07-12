@@ -25,7 +25,6 @@ const SignUP = () => {
       );
       dispatch(addUser(res.data));
       setShowToast(true);
-      console.log("Toast showing:", showtoast);
       setTimeout(() => {
         setShowToast(false);
         navigate("/profile");

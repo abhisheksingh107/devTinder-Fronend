@@ -4,14 +4,16 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = ({ user }) => {
-  const [firstName, setfirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-  const [age, setAge] = useState(user.age);
+  const navigate = useNavigate();
+  const [firstName, setfirstName] = useState(user.firstName || " ");
+  const [lastName, setLastName] = useState(user.lastName || " ");
+  const [age, setAge] = useState(user.age || " ");
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-  const [about, setAbout] = useState(user.about);
-  const [skills, setSkills] = useState(user?.skills);
+  const [about, setAbout] = useState(user.about || " ");
+  const [skills, setSkills] = useState(user?.skills || []);
   const [error, setError] = useState("");
   const [showtoast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -34,10 +36,11 @@ const EditProfile = ({ user }) => {
         }
       );
       console.log(res);
-      dispatch(addUser(res.data.user));
+      dispatch(addUser(res.data));
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
+        navigate("/feed");
       }, 2000);
     } catch (error) {
       console.error(error);

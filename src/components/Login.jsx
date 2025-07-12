@@ -34,7 +34,7 @@ const Login = () => {
         err?.response?.data ||
         err?.message ||
         "Something went Wrong";
-      setError(`Login failed: ${message}`);
+      setError(`${message}`);
       setShowToast(true);
     }
   };
