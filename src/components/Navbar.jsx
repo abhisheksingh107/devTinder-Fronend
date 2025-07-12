@@ -30,7 +30,6 @@ const Navbar = () => {
       navigate("/login");
     }
   };
-  // console.log(user);
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
