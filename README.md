@@ -64,6 +64,10 @@ Install the nginx
 - sudo npm install -g pm2
 - Now we have to run npm-start via pm2 So 
 - pm2 start src/app.js --name devtinder-backend
+- Modifying the BaseURL in frontEnd project /api/
+If you've changed any code in your React app, you need to rebuild it before deploying:
+- npm run build
+- sudo cp -r dist/* /var/www/html/
 
 # Nginx config
 Now our
@@ -104,3 +108,6 @@ server {
 - sudo nginx -t
 sudo systemctl reload nginx
 
+- Make sure to change the CORS URl - http://<your-ec2-ip> 
+If you updated the backend code (e.g., new routes, logic, etc.), and you're using pm2, just restart the backend app:
+ - pm2 restart devtinder-backend
