@@ -8,6 +8,7 @@ import Feed from "./components/Feed.jsx";
 import Connection from "./components/Connections.jsx";
 import Request from "./components/Request.jsx";
 import SignUp from "./components/SignUp.jsx";
+import Chat from "./components/chat.jsx";
 
 const App = () => {
   return (
@@ -16,13 +17,14 @@ const App = () => {
         <BrowserRouter basename="/">
           <Routes>
             <Route path="/" element={<Body />}>
-             <Route index element={<Navigate to="/login" />} />
+              <Route index element={<Navigate to="/login" />} />
               <Route path="/feed" element={<Feed />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp/>} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/connection" element={<Connection />} />
               <Route path="/request" element={<Request />} />
+              <Route path="/chat/:targetUserId" element={<Chat />} />
             </Route>
           </Routes>
         </BrowserRouter>
